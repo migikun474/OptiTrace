@@ -9,6 +9,7 @@
 #define MAX_FUNCTIONS 100
 #define MAX_CALL_DEPTH 1024
 
+
 // Stores accumulated statistics for each function.
 struct FunctionStats {
     char *function_name;
@@ -21,6 +22,13 @@ struct ActiveCall {
     const char *function_name;
     struct timespec start_time;
 };
+void logger_before(const char *function_name) {
+    printf("[CALL BEGIN] %s\n", function_name);
+}
+
+void logger_after(const char *function_name) {
+    printf("[CALL END]   %s\n", function_name);
+}
 
 // Global statistics.
 struct FunctionStats function_stats[MAX_FUNCTIONS];
